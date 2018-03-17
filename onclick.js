@@ -6,7 +6,7 @@ abi = JSON.parse('[{"constant":false,"inputs":[],"name":"useCharity","outputs":[
 VotingContract = web3.eth.contract(abi);
 web3.eth.defaultAccount =  web3.eth.accounts[0];
 // In your nodejs console, execute contractInstance.address to get the address at which the contract is deployed and change the line below to use your deployed address
-contractInstance = VotingContract.at('0x9236f8aad93a2672c57f9e16ba64593578529042');
+contractInstance = VotingContract.at('0xdce63ec45209e5b5f53ce88f9ee2c26aa7445b17');
 //candidates = {"Rama": "candidate-1", "Nick": "candidate-2", "Jose": "candidate-3"}
 
 function foo() {
@@ -17,7 +17,7 @@ function foo() {
 // console.log(Name);
 //console.log(Amount);
   candidateName = $("#candidate").val();
-contractInstance.donate(Name,Amount,{from:web3.eth.defaultAccount });
+contractInstance.donate(Name,Amount,{from:web3.eth.accounts[0], gas: 470000});
 alert("Thanks "+Name+" for donating " + Amount +" . ");
 
 //console.log( contractInstance.donatedMoney.call({from: web3.eth.accounts[0], gas: 470000}));
