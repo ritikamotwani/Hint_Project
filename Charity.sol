@@ -1,8 +1,5 @@
 pragma solidity ^0.4.18;
 
-import 'zeppelin-solidity/contracts/ownership/Ownable.sol';
-import 'zeppelin-solidity/contracts/token/StandardToken.sol';
-import 'zeppelin-solidity/contracts/math/SafeMath.sol';
 
 interface ERC20 {
     function transferFrom(address _from, address _to, uint _value) public returns (bool);
@@ -26,28 +23,25 @@ contract Token {
 	}
 	string promisedWork;
 	struct completedTransaction {
-		string work = "";
+		string work;
 		uint amount;
 	}
-	Transaction transactions[];    
+	Transaction[] transactions;    
 	completedTransaction trans;
 }
 
-contract userToken is Token, Ownable, ERC20, ERC223 {   		
+contract userToken is Token {   		
 	function donate(string _name, uint _value) public{
-		transactions.push(Transaction(_name, _value);		
+		transactions.push(Transaction(_name, _value));		
 		paid[msg.sender] = paid[msg.sender]+_value;
-		_totalSupply = _totalSupply+value;
+		_totalSupply = _totalSupply+_value;
 	}
-	function donatedMoney() return (uint amount) {
-		amount = paid[msg.sender];
-		return amount;
+	function donatedMoney() returns (uint amount1) {
+		amount1 = paid[msg.sender];
+		return amount1;
 	}
 	function check() returns (string work, uint amount){
 		work = trans.work;
-		if(work == "") {
-			work =	"Week isn't over yet.";
-		}		
 		amount = trans.amount;
 		return (work,amount);
 	}
@@ -62,9 +56,9 @@ contract userToken is Token, Ownable, ERC20, ERC223 {
 			WorkDone;
 		}
 		else {
-			string work = "Goal forwarded next week.";
+			string memory work1 = "Goal_forwarded_next_week.";
 			amount = 0;
-			trans = completedTransaction(work,amount);
+			trans = completedTransaction(work1,amount);
 			WorkNotDone();
 		}
 	}
