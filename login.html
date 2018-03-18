@@ -1,271 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Login</title>
-	<style>
-		@use postcss-cssnext;
+<title>Donate</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.6.js"></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-replace.js"></script>
+<script type="text/javascript" src="js/Vegur_700.font.js"></script>
+<script type="text/javascript" src="js/Vegur_400.font.js"></script>
+<script type="text/javascript" src="js/Vegur_300.font.js"></script>
+<script type="text/javascript" src="js/atooltip.jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/tabs.js"></script>
 
-/* config.css */
-
-:root {
-  --baseColor: #606468;
-}
-.body {
-  color: blue;
-}
-/* helpers/align.css */
-
-.align {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* helpers/grid.css */
-
-:root {
-  --gridMaxWidth: 20rem;
-  --gridWidth: 90%;
+<style>
+  body {
+    background-color: #444442;
+    padding-top: 85px;
 }
 
-.grid {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--gridMaxWidth);
-  width: var(--gridWidth);
+h1 {
+    font-family: 'Poppins', sans-serif, 'arial';
+    font-weight: 600;
+    font-size: 72px;
+    color: white;
+    text-align: center;
 }
 
-/* helpers/hidden.css */
-
-.hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
+h4 {
+    font-family: 'Roboto', sans-serif, 'arial';
+    font-weight: 400;
+    font-size: 20px;
+    color: #9b9b9b;
+    line-height: 1.5;
 }
 
-/* helpers/icon.css */
+/* ///// inputs /////*/
 
-:root {
-  --iconFill: var(--baseColor);
+input:focus ~ label, textarea:focus ~ label, input:valid ~ label, textarea:valid ~ label {
+    font-size: 0.75em;
+    color: #999;
+    top: -5px;
+    -webkit-transition: all 0.225s ease;
+    transition: all 0.225s ease;
 }
 
-.icons {
-  display: none;
+.styled-input {
+    float: left;
+    width: 293px;
+    margin: 1rem 0;
+    position: relative;
+    border-radius: 4px;
 }
 
-.icon {
-  display: inline-block;
-  fill: var(--iconFill);
-  font-size: 1rem;
-  height: 1em;
-  vertical-align: middle;
-  width: 1em;
+@media only screen and (max-width: 768px){
+    .styled-input {
+        width:100%;
+    }
 }
 
-/* layout/base.css */
-
-:root {
-  --htmlFontSize: 100%;
-
-  --bodyBackgroundColor: #2c3338;
-  --bodyColor: var(--baseColor);
-  --bodyFontFamily: 'Open Sans';
-  --bodyFontFamilyFallback: sans-serif;
-  --bodyFontSize: 0.875rem;
-  --bodyFontWeight: 400;
-  --bodyLineHeight: 1.5;
+.styled-input label {
+    color: #999;
+    padding: 1.3rem 30px 1rem 30px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    pointer-events: none;
 }
 
-* {
-  box-sizing: inherit;
+.styled-input.wide { 
+    width: 650px;
+    max-width: 100%;
 }
 
-html {
-  box-sizing: border-box;
-  font-size: var(--htmlFontSize);
-  height: 100%;
+input,
+textarea {
+    padding: 30px;
+    border: 0;
+    width: 100%;
+    font-size: 1rem;
+    background-color: #2d2d2d;
+    color: white;
+    border-radius: 4px;
 }
 
-body {
-  background-color: var(--bodyBackgroundColor);
-  color: var(--bodyColor);
-  font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
-  font-size: var(--bodyFontSize);
-  font-weight: var(--bodyFontWeight);
-  height: 100%;
-  line-height: var(--bodyLineHeight);
-  margin: 0;
-  min-height: 100vh;
+input:focus,
+textarea:focus { outline: 0; }
+
+input:focus ~ span,
+textarea:focus ~ span {
+    width: 100%;
+    -webkit-transition: all 0.075s ease;
+    transition: all 0.075s ease;
 }
 
-/* modules/anchor.css */
-
-:root {
-  --anchorColor: #eee;
+textarea {
+    width: 100%;
+    min-height: 15em;
 }
 
-a {
-  color: var(--anchorColor);
-  outline: 0;
-  text-decoration: none;
+.input-container {
+    width: 650px;
+    max-width: 100%;
+    margin: 20px auto 25px auto;
 }
 
-a:focus,
-a:hover {
-  text-decoration: underline;
+.submit-btn {
+    float: right;
+    padding: 7px 35px;
+    border-radius: 60px;
+    display: inline-block;
+    background-color: #4b8cfb;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.06),
+              0 2px 10px 0 rgba(0,0,0,0.07);
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
 }
 
-/* modules/form.css */
-
-:root {
-  --formFieldMargin: 0.875rem;
+.submit-btn:hover {
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.10),
+              0 1px 1px 0 rgba(0,0,0,0.09);
 }
 
-input {
-  background-image: none;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  outline: 0;
-  padding: 0;
-  transition: background-color 0.3s;
+@media (max-width: 768px) {
+    .submit-btn {
+        width:100%;
+        float: none;
+        text-align:center;
+    }
 }
 
-input[type='submit'] {
-  cursor: pointer;
+input[type=checkbox] + label {
+  color: #ccc;
+  font-style: italic;
+} 
+
+input[type=checkbox]:checked + label {
+  color: #f00;
+  font-style: normal;
 }
-
-.form {
-  margin: calc(var(--formFieldMargin) * -1);
-}
-
-.form input[type='password'],
-.form input[type='text'],
-.form input[type='submit'] {
-  width: 100%;
-}
-
-.form__field {
-  display: flex;
-  margin: var(--formFieldMargin);
-}
-
-.form__input {
-  flex: 1;
-}
-
-/* modules/login.css */
-
-:root {
-  --loginBorderRadus: 0.25rem;
-  --loginColor: #eee;
-
-  --loginInputBackgroundColor: #3b4148;
-  --loginInputHoverBackgroundColor: #434a52;
-
-  --loginLabelBackgroundColor: #363b41;
-
-  --loginSubmitBackgroundColor: #ea4c88;
-  --loginSubmitColor: #eee;
-  --loginSubmitHoverBackgroundColor: #d44179;
-}
-
-.login {
-  color: var(--loginColor);
-}
-
-.login label,
-.login input[type='text'],
-.login input[type='password'],
-.login input[type='submit'] {
-  border-radius: var(--loginBorderRadus);
-  padding: 1rem;
-}
-
-.login label {
-  background-color: var(--loginLabelBackgroundColor);
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-.login input[type='password'],
-.login input[type='text'] {
-  background-color: var(--loginInputBackgroundColor);
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-}
-
-.login input[type='password']:focus,
-.login input[type='password']:hover,
-.login input[type='text']:focus,
-.login input[type='text']:hover {
-  background-color: var(--loginInputHoverBackgroundColor);
-}
-
-.login input[type='submit'] {
-  background-color: var(--loginSubmitBackgroundColor);
-  color: var(--loginSubmitColor);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.login input[type='submit']:focus,
-.login input[type='submit']:hover {
-  background-color: var(--loginSubmitHoverBackgroundColor);
-}
-
-/* modules/text.css */
-
-:root {
-  --paragraphMarginBottom: 1.5rem;
-  --paragraphMarginTop: 1.5rem;
-}
-
-p {
-  margin-bottom: var(--paragraphMarginBottom);
-  margin-top: var(--paragraphMarginTop);
-}
-
-.text--center {
-  text-align: center;
-}
-
-	</style>
+</style>
 </head>
 <body>
-
-  <div class="grid">
-
-  
-
-      <div class="form__field">
-        <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Username</span></label>
-        <input id="login__username" type="text" name="username" class="form__input" placeholder="Username" id ="user" required>
-      </div>
-
-      <div class="form__field">
-        <label for="login__password"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#lock"></use></svg><span class="hidden">Password</span></label>
-        <input id="login__password" type="password" name="password" class="form__input" placeholder="Password" required>
-      </div>
-
-      <div class="form__field">
-        <button onclick="myFunction1()">Login</button>
-      </div>
-
-    </form>
-
+<div class="container">
+  <div class="row">
+      <h2>Login</h2>
   </div>
+  <div class="row">
+      <h4 style="text-align:center">Are you the member of the organization?</h4>
+  </div>
+  <div class="row input-container">
+      <div class="col-xs-12">
+        <div class="styled-input wide">
+          <input type="text" id = "Name" required />
+          <label>Name</label> 
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="styled-input wide">
+          <input type="password" id="login__password" required />
+          <label>Password</label> 
+        </div>
+      </div>
+      
 
-  <svg xmlns="http://www.w3.org/2000/svg" class="icons"><symbol id="arrow-right" viewBox="0 0 1792 1792"><path d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z"/></symbol><symbol id="lock" viewBox="0 0 1792 1792"><path d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z"/></symbol><symbol id="user" viewBox="0 0 1792 1792"><path d="M1600 1405q0 120-73 189.5t-194 69.5H459q-121 0-194-69.5T192 1405q0-53 3.5-103.5t14-109T236 1084t43-97.5 62-81 85.5-53.5T538 832q9 0 42 21.5t74.5 48 108 48T896 971t133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5T896 896 624.5 783.5 512 512t112.5-271.5T896 128t271.5 112.5T1280 512z"/></symbol></svg>
-<script src="./login.js"></script>
+      
+      <div class="col-xs-12">
+        <div class="btn-lrg submit-btn" onclick = 'myFunction1();' >Log In</div>
+      </div>
+     
+      
+    
+      
+  </div>
+</div>
+
 </body>
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script type="text/javascript" src="./login.js"></script>
 </html>

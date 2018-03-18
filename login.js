@@ -1,5 +1,5 @@
 function myFunction1() {
-	var User = document.getElementById("login__username").value;
+	var User = document.getElementById("Name").value;
 	console.log(User);
 	var Password = document.getElementById("login__password").value;
 	console.log(Password);

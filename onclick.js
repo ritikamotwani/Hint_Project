@@ -59,3 +59,4 @@ function workInfo(){
 function useCharity(){
         contractInstance.useCharity({from: web3.eth.accounts[1], gas: 470000});
 }
+
